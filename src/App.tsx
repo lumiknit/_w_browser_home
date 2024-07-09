@@ -58,9 +58,11 @@ const stringToDataShortcuts = (s: string): Partial<Data> => {
   };
 };
 
+const storageName = "__home_shortcuts_data"
+
 const loadData = (): Data => {
   // Load from local storage
-  const data = localStorage.getItem("data");
+  const data = localStorage.getItem(storageName);
   try {
     return { ...defaultData, ...(data ? JSON.parse(data) : {}) };
   } catch (e) {
@@ -69,7 +71,7 @@ const loadData = (): Data => {
 };
 
 const saveData = (data: Data) => {
-  localStorage.setItem("data", JSON.stringify(data));
+  localStorage.setItem(storageName, JSON.stringify(data));
 };
 
 

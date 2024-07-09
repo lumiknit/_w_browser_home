@@ -64,6 +64,7 @@ a.shortcut {
 img {
   border-radius: 10%;
   aspect-ratio: 1 / 1;
+  max-width: 100%;
 }
 
 div.label {
