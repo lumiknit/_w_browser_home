@@ -1,0 +1,99 @@
+:root {
+  font-family: Pretendard, 'Pretendard JP', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: light dark;
+
+  color: var(--fg);
+  background-color: var(--bg);
+
+  --fg: #000000;
+  --bg: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #ffffff;
+    --bg: #000000;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  font-size: 16px;
+}
+
+.clock {
+  width: 100%;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.clock-text {
+  margin: 0 2rem;
+}
+
+.shortcuts {
+  position: relative;
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.s-w {
+  display: inline-block;
+}
+
+a.shortcut {
+  margin: .5rem;
+  padding: 15%;
+  background-color: #ccc2;
+  border-radius: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  justify-content: center;
+  align-items: stretch;
+  text-decoration: none;
+  color: var(--fg);
+}
+
+img {
+  border-radius: 10%;
+  aspect-ratio: 1 / 1;
+}
+
+div.label {
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.btn-edit, .btn-fold {
+  background: none;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.btn-edit {
+  margin-top: 3rem;
+}
+
+.btn-fold {
+  opacity: 0.3;;
+}
+
+button, input, select, textarea {
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
