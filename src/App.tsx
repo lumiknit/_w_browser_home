@@ -36,12 +36,11 @@ const defaultData: Data = {
   foldedShortcuts: [],
 };
 
-const shortcutsToString = (shortcuts: Shortcut[]): string => {
-  return shortcuts
+const shortcutsToString = (shortcuts: Shortcut[]): string =>
+  shortcuts
     .map((s) => `${s.name}\n${s.href}\n${s.icon}`.trim())
     .join("\n\n")
     .trim();
-};
 
 const stringToShortcuts = (s: string): Shortcut[] => {
   return s
@@ -111,11 +110,11 @@ const Shortcuts: Component<{ shortcuts: Shortcut[]; w: number }> = (props) => {
               flex: `0 0 ${props.w}%`,
             }}
           >
-            <a class="shortcut" href={s.href}>
+            <a class="f-cen shortcut" href={s.href}>
               <img
                 src={
                   s.icon ||
-                  "https://www.google.com/s2/favicons?sz=128&sz=64&sz=32&domain=" +
+                  "https://www.google.com/s2/favicons?sz=64&sz=32&sz=16&domain=" +
                     new URL(s.href).hostname
                 }
                 alt={s.name}
@@ -139,12 +138,40 @@ const App: Component = () => {
     setData(newData);
     saveData(newData);
   };
+  const updateTime = () => setTime(get24HourTime());
 
   onMount(() => {
-    setInterval(() => {
-      setTime(get24HourTime());
-    }, 20000);
+    setTimeout(
+      () => {
+        updateTime();
+        setInterval(updateTime, 60 * 1000);
+      },
+      (61 - new Date().getSeconds()) * 1000,
+    );
   });
+
+  const handleSearchKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
+      const input = e.target as HTMLInputElement;
+      let value = input.value.trim();
+
+      // Check if it's a URL
+      const re = /^([-A-Za-z]+:)?\S+\.[A-Za-z0-9]+(\/\S*)?$/;
+      const result = re.exec(value);
+      if (result) {
+        // Check protocol exists
+        if (!result[1]) {
+          value = "https://" + value;
+        } else if (result[1] === "http:") {
+          value = "https:" + value.slice(5);
+        }
+        window.location.href = value;
+      } else {
+        const encoded = encodeURIComponent(value);
+        window.location.href = `https://duckduckgo.com/?q=${encoded}`;
+      }
+    }
+  };
 
   return (
     <>
@@ -225,7 +252,7 @@ const App: Component = () => {
                 ...stringToDataShortcuts(e.currentTarget.value),
               }))
             }
-            rows={10}
+            rows={15}
           >
             {dataShortcutsToString(data())}
           </textarea>
@@ -247,6 +274,14 @@ const App: Component = () => {
               }}
             />
           </Show>
+          <div class="f-cen search-box">
+            <input
+              type="search"
+              class="search-form"
+              placeholder="https://"
+              onKeyDown={handleSearchKeyDown}
+            />
+          </div>
           <Shortcuts
             shortcuts={data().shortcuts}
             w={100 / data().shortcutRows}
