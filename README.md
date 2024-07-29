@@ -2,6 +2,8 @@
 
 A single file browser home page.
 
+Example: https://lumiknit.github.io/apps/home
+
 I created it for some android browser which has too restricted customize of new tab page.
 
 ## Feature
