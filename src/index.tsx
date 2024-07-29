@@ -3,5 +3,8 @@ import { render } from "solid-js/web";
 
 import "./index.css";
 import App from "./App";
+import { openInNewTabAndBackIfN } from "./redirect";
 
-render(() => <App />, document.getElementById("root")!);
+if (!openInNewTabAndBackIfN()) {
+	render(() => <App />, document.getElementById("root")!);
+}
