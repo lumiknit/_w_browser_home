@@ -22,6 +22,10 @@ export type Data = {
   foldedShortcuts: Shortcut[];
 };
 
+const link = () => window.location.href.split("?")[0];
+
+const linkForNewTab = () => link() + "?n";
+
 const defaultData: Data = {
   timeAlign: "center",
   shortcuts: [
@@ -175,8 +179,25 @@ const App: Component = () => {
 
   return (
     <>
+      <button class="btn-edit" onClick={() => setEditing((v) => !v)}>
+        {editing() ? "Done" : "Edit"}
+      </button>
       <Switch>
         <Match when={editing()}>
+          <h1> Link </h1>
+          <ul>
+            <li>
+              {" "}
+              <a href={link()}> {link()} </a>{" "}
+            </li>
+            <li>
+              {" "}
+              Link for open in new tab: <a href={link()}>
+                {" "}
+                {linkForNewTab()}{" "}
+              </a>{" "}
+            </li>
+          </ul>
           <h1> Time </h1>
           <div>
             <label>
@@ -299,10 +320,6 @@ const App: Component = () => {
           </Show>
         </Match>
       </Switch>
-
-      <button class="btn-edit" onClick={() => setEditing((v) => !v)}>
-        {editing() ? "Done" : "Edit"}
-      </button>
     </>
   );
 };

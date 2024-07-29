@@ -6,5 +6,5 @@ import App from "./App";
 import { openInNewTabAndBackIfN } from "./redirect";
 
 if (!openInNewTabAndBackIfN()) {
-	render(() => <App />, document.getElementById("root")!);
+  render(() => <App />, document.getElementById("root")!);
 }

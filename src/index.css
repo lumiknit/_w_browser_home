@@ -33,6 +33,7 @@ body {
   width: 100%;
   font-size: 3rem;
   font-weight: 700;
+  margin: 1rem 0;
 }
 
 .clock-text {
@@ -82,14 +83,15 @@ div.label {
   padding: 1rem;
   color: var(--fg);
   cursor: pointer;
+  opacity: 0.2;
 }
 
 .btn-edit {
-  margin-top: 3rem;
-}
-
-.btn-fold {
-  opacity: 0.3;
+  display: block;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  width: 100%;
 }
 
 button,
