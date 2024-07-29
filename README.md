@@ -1,28 +1,14 @@
-## Usage
+# Browser Home
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+A single file browser home page.
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+I created it for some android browser which has too restricted customize of new tab page.
 
-## Available Scripts
+## Feature
 
-In the project directory, you can run:
-
-### `npm run dev`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
-
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-Learn more about deploying your application with the [documentations](https://vitejs.dev/guide/static-deploy.html)
+- Show clock & bookmarks & URL navigation with duckduckgo search
+- Customizable bookmarks (items change, folded items, column count)
+- Color scheme (dark mode) support
+- Open home page in new tab.
+  - When enter the page with `?n` query param, open new tab with the home page, and the original tab will remain on the original page.
+  - It may be useful for browser's home page button, which to open new tab not just move page.
