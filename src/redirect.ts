@@ -15,6 +15,11 @@ export const openInNewTabAndBack = (url: string): boolean => {
 export const openInNewTabAndBackIfN = (): boolean | void => {
   const url = new URL(window.location.href);
   if (url.searchParams.get("n") !== null) {
-    return openInNewTabAndBack(window.document.location.href.split("?")[0]);
+    // If number, parse
+    let n = parseInt(url.searchParams.get("n") as string);
+    if (isNaN(n)) n = 2;
+    if (window.history.length >= n) {
+      return openInNewTabAndBack(window.document.location.href.split("?")[0]);
+    }
   }
 };

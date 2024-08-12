@@ -46,20 +46,18 @@ const shortcutsToString = (shortcuts: Shortcut[]): string =>
     .join("\n\n")
     .trim();
 
-const stringToShortcuts = (s: string): Shortcut[] => {
-  return s
-    .split("\n\n")
-    .map((s) => s.trim())
-    .filter((s) => s)
-    .map((l) => {
-      const [name, href, icon] = l.split("\n").map((s) => s.trim());
-      return {
-        name: name || "Link",
-        href: href || "#",
-        icon: icon || "",
-      };
-    });
-};
+const stringToShortcuts = (s: string): Shortcut[] => s
+  .split("\n\n")
+  .map((s) => s.trim())
+  .filter((s) => s)
+  .map((l) => {
+    const [name, href, icon] = l.split("\n").map((s) => s.trim());
+    return {
+      name: name || "Link",
+      href: href || "#",
+      icon: icon || "",
+    };
+  });
 
 const dataShortcutsToString = (data: Data): string => {
   const s = shortcutsToString(data.shortcuts);
@@ -119,7 +117,7 @@ const Shortcuts: Component<{ shortcuts: Shortcut[]; w: number }> = (props) => {
                 src={
                   s.icon ||
                   "https://www.google.com/s2/favicons?sz=64&sz=32&sz=16&domain=" +
-                    new URL(s.href).hostname
+                  new URL(s.href).hostname
                 }
                 alt={s.name}
               />
@@ -187,15 +185,10 @@ const App: Component = () => {
           <h1> Link </h1>
           <ul>
             <li>
-              {" "}
-              <a href={link()}> {link()} </a>{" "}
+              <a href={link()}> {link()} </a>
             </li>
             <li>
-              {" "}
-              Link for open in new tab: <a href={link()}>
-                {" "}
-                {linkForNewTab()}{" "}
-              </a>{" "}
+              Link for open in new tab: <a href={link()}>{linkForNewTab()}</a>
             </li>
           </ul>
           <h1> Time </h1>
